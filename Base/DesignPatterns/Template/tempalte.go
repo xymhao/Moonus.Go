@@ -11,6 +11,13 @@ type Cooker interface {
 type CookTemplate struct {
 }
 
+type CookTemplate2 struct {
+}
+
+func (CookTemplate2) fire() {
+	fmt.Println("fire2")
+}
+
 func (CookTemplate) fire() {
 	fmt.Println("fire")
 }
@@ -26,6 +33,7 @@ func (CookTemplate) outFire() {
 
 type ChineseCook struct {
 	CookTemplate
+	CookTemplate2
 }
 
 func (ChineseCook) fire() {
