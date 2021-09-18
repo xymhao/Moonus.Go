@@ -1,10 +1,10 @@
-package Mock
+package mock
 
-type Foo interface {
+type foo interface {
 	Bar(x int) int
 }
 
-func SUT(f Foo) {
+func sut(f foo) {
 	// ...
 	println(f.Bar(99))
 	println(f.Bar(98))

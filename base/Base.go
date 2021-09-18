@@ -1,4 +1,4 @@
-package Base
+package base
 
 import (
 	"fmt"
@@ -111,6 +111,7 @@ func SliceDemo() {
 	arr := []int{1, 2, 3}
 	fmt.Println(arr)
 	fmt.Printf("a 变量的地址是: %x\n", arr)
+	printSlice(arr)
 
 	arr1 := make([]int, 3)
 	i := copy(arr1, arr)
@@ -118,11 +119,13 @@ func SliceDemo() {
 	fmt.Println("arr:", arr)
 	fmt.Println("arr1:", i, arr1)
 	fmt.Println("s:", s)
+	printSlice(arr1)
 
 	//默认申请了一个：length:1, capacity:2数组
 	s1 := make([]int, 1, 2)
 	fmt.Println("default:", s1)
 	s1[0] = 1
+	printSlice(s1)
 
 	s2 := append(s1, 2)
 	fmt.Println("由于空间为2，目前只有一个元素，",
@@ -141,6 +144,9 @@ func SliceDemo() {
 	fmt.Printf("888 s3:%v %x \n", s3, &s3[0])
 
 	fmt.Println("SliceDemo----end")
+}
+func printSlice(s []int) {
+	fmt.Printf("len:%d, cap= %d, %v\n", len(s), cap(s), s)
 }
 
 func Range() {

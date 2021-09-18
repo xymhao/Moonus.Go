@@ -1,4 +1,4 @@
-package MutexLock
+package mutexlock
 
 import (
 	"github.com/stretchr/testify/assert"

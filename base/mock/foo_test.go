@@ -1,7 +1,7 @@
-package Mock
+package mock
 
 import (
-	. "Moonus.Go/Base/Mock/mocks"
+	. "Moonus.Go/base/mock/mocks"
 	"github.com/golang/mock/gomock"
 	"testing"
 )
@@ -26,5 +26,5 @@ func TestMockFoo(t *testing.T) {
 		Bar(gomock.Any()).
 		Return(102)
 
-	SUT(m)
+	sut(m)
 }
