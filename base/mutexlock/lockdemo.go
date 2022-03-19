@@ -1,8 +1,10 @@
 package mutexlock
 
 import "sync"
+import "github.com/golang/glog"
 
 func DemoAddNoLock() int {
+	glog.Fatalf()
 	var count = 0
 	wg := sync.WaitGroup{}
 	wg.Add(10)

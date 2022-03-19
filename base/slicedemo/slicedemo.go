@@ -62,6 +62,13 @@ func sliceDemo2() {
 	fmt.Println("dir2 =>", string(dir2))  //prints: dir2 => BBBBBBBBB
 	fmt.Println("dir3 =>", string(dir11)) //prints: dir2 => AAAA
 
+	//相同地址
+	fmt.Printf("%x\n", &dir1[0])
+	fmt.Printf("%x\n", &path[0])
+
+	//Full Slice Expression
+	fmt.Printf("%x\n", &dir2[0]) //path[:sepIndex:sepIndex] Full Slice Expression，申请新的内存地址
+
 	dir1 = append(dir1, "suffix"...)
 
 	fmt.Println("dir1 =>", string(dir1)) //prints: dir1 => AAAAsuffix
@@ -70,6 +77,9 @@ func sliceDemo2() {
 	dir11 = append(dir11, "11111"...)
 	fmt.Println("dir3 =>", string(dir11)) //prints: dir3 => AAAA11111
 	fmt.Println("dir2 =>", string(dir2))  //prints: dir2 => uffixBBBB
+
+	fmt.Printf("%x\n", &dir2[0])
+	fmt.Printf("%x\n", dir11[0])
 }
 
 type data struct {
