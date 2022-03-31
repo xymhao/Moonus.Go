@@ -11,11 +11,16 @@ import (
 )
 
 func main() {
+	//init background context
 	ctx := context.Background()
+	//with cancel
 	ctx, cancel := context.WithCancel(ctx)
+	//with errgroup
 	group, ctx := errgroup.WithContext(ctx)
 	mux := http.NewServeMux()
 	server := http.Server{Addr: ":807", Handler: mux}
+
+	//start http server
 	group.Go(func() error {
 		mux.HandleFunc("/debug/pprof/", pprof.Index)
 		mux.HandleFunc("/debug/pprof/profile", pprof.Profile)
@@ -31,6 +36,7 @@ func main() {
 		return nil
 	})
 
+	//handle server shutdown
 	group.Go(func() error {
 		<-ctx.Done()
 		fmt.Println("http server stop")
@@ -38,6 +44,7 @@ func main() {
 	})
 
 	group.Go(func() error {
+		//register os signal
 		c := make(chan os.Signal, 0)
 		signal.Notify(c)
 
@@ -47,6 +54,7 @@ func main() {
 				return ctx.Err()
 			case sig := <-c:
 				fmt.Println("signal", sig)
+				//cancel ctx when signal receive
 				cancel()
 			}
 		}
