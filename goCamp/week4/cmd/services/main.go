@@ -19,12 +19,17 @@ func main() {
 	group, ctx := errgroup.WithContext(ctx)
 	mux := http.NewServeMux()
 	server := http.Server{Addr: ":807", Handler: mux}
+
 	//start http server
 	group.Go(func() error {
 		mux.HandleFunc("/debug/pprof/", pprof.Index)
 		mux.HandleFunc("/debug/pprof/profile", pprof.Profile)
 		mux.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 		mux.HandleFunc("/debug/pprof/trace", pprof.Trace)
+		mux.HandleFunc("/healthz", func(writer http.ResponseWriter, request *http.Request) {
+			writer.Write([]byte("ok"))
+			return
+		})
 		mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 			fmt.Println("server 1")
 		})
