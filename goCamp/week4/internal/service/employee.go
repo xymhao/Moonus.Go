@@ -23,3 +23,7 @@ func (svc EmpService) Add(emp map[string]string) error {
 	svc.employee.Add(emp["name"], age)
 	return nil
 }
+
+func Create() {
+	biz.NewEmployeeOpts(biz.Name("moonus"), biz.Age(27))
+}

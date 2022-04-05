@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-func InitializeEmpSvc() *http.Server {
+func InitializeHttpServer() *http.Server {
 	wire.Build(service.NewEmpService, biz.NewEmployee, data.NewEmployeeRepo, data.NewMySqlDb, server.NewHttpServer)
 	return nil
 }

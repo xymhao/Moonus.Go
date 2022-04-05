@@ -15,7 +15,7 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeEmpSvc() *http.Server {
+func InitializeHttpServer() *http.Server {
 	db := data.NewMySqlDb()
 	employeeRepo := data.NewEmployeeRepo(db)
 	employee := biz.NewEmployee(employeeRepo)
