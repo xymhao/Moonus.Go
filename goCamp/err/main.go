@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	e "errors"
 	"fmt"
 	"github.com/pkg/errors"
 	"io"
@@ -22,7 +23,37 @@ var (
 	ErrDemo = errors.New("{包名}: invalid use of UnreadByte")
 )
 
+//创建自定义error类型
+type errorMo struct {
+	s string
+	e error
+}
+
+func (err errorMo) Error() string {
+	return string(err.s)
+}
+
+func New(text string) error {
+	e2 := errorMo{s: text}
+	return &e2
+}
+
+var ErrMoonus = New("EOF")
+var ErrGo = e.New("EOF")
+
 func main() {
+	wrapErr()
+	panicAndRecover()
+	errN := New("EOF")
+	//is true
+	if ErrMoonus == errN {
+		fmt.Println("custom ErrMoonus equal New(EOF)")
+	}
+
+	//is false
+	if ErrGo == e.New("EOF") {
+		fmt.Println("errors.New equal")
+	}
 
 	main2()
 
@@ -32,6 +63,43 @@ func main() {
 	}
 
 	fmt.Println("end")
+}
+
+func wrapErr() bool {
+	err := ErrDemo
+	err2 := errors.Wrap(err, "warp")
+	if e.Is(err2, ErrDemo) {
+		return true
+	}
+	return false
+}
+
+func warp() error {
+	//"github.com/pkg/errors"
+	return errors.Wrap(errors.New("err"), "")
+}
+
+func OpaqueErr() bool {
+	err := New("errorMo")
+	_, ok := err.(*errorMo)
+	return ok
+}
+
+func (err errorMo) Temporary() bool {
+	return true
+}
+
+func (err errorMo) IsMoonusCall() bool {
+	isTemporary := IsTemporary(err)
+	return isTemporary
+}
+func panicAndRecover() {
+	defer func() {
+		errR := recover()
+		fmt.Println(errR)
+	}()
+
+	panic("demo panic")
 }
 
 func demo() error {
@@ -145,4 +213,13 @@ func main2() {
 		fmt.Printf("stack trace : \n %+v\n", err)
 	}
 
+}
+
+func fileOp() error {
+	_, err := os.Open("/path")
+	if err != nil {
+		return err
+	}
+	// read or write
+	return nil
 }

@@ -9,10 +9,17 @@ import (
 )
 
 func main() {
+	go hello()
+	go hello()
+	go hello()
+
 	channelDemo()
 	//demo()
 	//starHttp()
 	//leak()
+}
+func hello() {
+	fmt.Println("hello world")
 }
 
 func channelDemo() {
