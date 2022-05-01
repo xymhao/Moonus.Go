@@ -1,6 +1,6 @@
 # Homework
 1. 使用 redis benchmark 工具, 测试 10 20 50 100 200 1k 5k 字节 value 大小，redis get set 性能。
-[link](./redis-benchmark.png)
+[link](redis-benchmark.png)
 如图：10 20 50 100 200 1k 5K 时 get 和set 的性能差距几乎变化不大每秒的QPS维持在4w以上。
 当数据大小达到10k时，QPS 3.5w， 性能降低了约10%。
 当数据大小达到50k时，QPS：2.5W，性能降低了55%
