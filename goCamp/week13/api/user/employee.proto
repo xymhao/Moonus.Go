@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user.v1;
+import "google/api/annotations.proto";
+
+option go_package = "week13/api/user";
+
+service Employee{
+  rpc Add(AddRequest) returns (AddReply){
+    option (google.api.http) = {
+      get: "/employee/{name}"
+    };
+  }
+}
+
+message AddRequest{
+  string name = 1;
+  int32 age = 2;
+  string email = 3;
+}
+
+message AddReply{
+  string code = 1;
+  string message = 2;
+}

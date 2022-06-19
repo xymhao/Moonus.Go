@@ -1,0 +1,1 @@
+流式任务处理的服务，上有一般依赖于message，broker。如Kafka。

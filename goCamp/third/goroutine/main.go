@@ -12,8 +12,12 @@ func main() {
 	go hello()
 	go hello()
 	go hello()
+	ch := make(chan int)
+	ch <- 1
 
-	channelDemo()
+	ch = nil
+	<-ch
+	channelDemo(ch)
 	//demo()
 	//starHttp()
 	//leak()
@@ -22,8 +26,7 @@ func hello() {
 	fmt.Println("hello world")
 }
 
-func channelDemo() {
-	ch := make(chan int)
+func channelDemo(ch chan int) {
 	go func() {
 		for true {
 			fmt.Println("1", <-ch)
