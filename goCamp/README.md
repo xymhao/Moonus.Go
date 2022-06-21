@@ -18,7 +18,7 @@ BFF层，针对不同的设备，开发人员可以更加专注业务逻辑交�
 https://github.com/googleapis/googleapis/blob/master/google/rpc/error_details.proto
     - 统一的错误编码
 
-- Go 项目工程化（项目结构、DI、代码分层、ORM 框架）
+# Go 项目工程化（项目结构、DI、代码分层、ORM 框架）
 项目结构
 - api：API协议定义目录
 - internal：
@@ -31,7 +31,7 @@ https://github.com/googleapis/googleapis/blob/master/google/rpc/error_details.pr
 - 并发的使用（errgroup 的并行链路请求）
 goCamp/week13/cmd/services/main.go 通过errgroup 管理goroutine， 快速初始化和实现优雅终止。
 
-- 微服务中间件的使用（ELK、Opentracing、Prometheus、Kafka）
+# 微服务中间件的使用（ELK、Opentracing、Prometheus、Kafka）
     - ELK进行日志采集，和日志观测。
     - Opentracing：（https://opentracing.io/docs/overview/what-is-tracing/） :微服务下离不开全链路的追踪，便于故障排查，以及导致性能低下的原因。
         - Jaeger:Uber 开源的分布式跟踪系统
@@ -39,7 +39,7 @@ goCamp/week13/cmd/services/main.go 通过errgroup 管理goroutine， 快速初�
     - Kafka：消息队列，用于日志采集、服务解耦、流量削峰，最终一致性的分布式事务。
 
 
-- 缓存的使用优化（一致性处理、Pipeline优化）
+# 缓存的使用优化（一致性处理、Pipeline优化）
     - 一致性处理
         - 写操作使用Set操作，覆盖缓存；
         - 读操作，使用SetNX，操作回写MISS数据。
