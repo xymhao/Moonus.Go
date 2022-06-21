@@ -39,7 +39,7 @@ goCamp/week13/cmd/services/main.go 通过errgroup 管理goroutine， 快速初�
     - Kafka：消息队列，用于日志采集、服务解耦、流量削峰，最终一致性的分布式事务。
 
 
--缓存的使用优化（一致性处理、Pipeline优化）
+- 缓存的使用优化（一致性处理、Pipeline优化）
     - 一致性处理
         - 写操作使用Set操作，覆盖缓存；
         - 读操作，使用SetNX，操作回写MISS数据。
